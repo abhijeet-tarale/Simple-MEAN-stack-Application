@@ -1,0 +1,78 @@
+<html ng-app="meanApp"> 
+<head>
+<title>Angular/Node / Express</title>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="public/js/angular.min.js"></script>
+		<script src="public/controller/controller.js"></script>
+		<link href="public/css/bootstrap.min.css" rel="stylesheet">
+		
+	 <script>
+			 $(document).ready(function (){
+			  $("#add").mouseover(function(){
+						$("#add").css("color","red");
+				});
+				$("#add").mouseout(function(){
+						$("#add").css("color","white");
+				});
+				$("#show").click(function(){
+						$("#data").show();
+				});
+				$("#flip").click(function(){
+					$("#panel").slideToggle("slow");
+				});
+			});
+	 </script>
+		
+	
+</head>
+<body>
+	<div ng-controller="serviceController">
+	<div class="jumbotron">{{message}}</div>
+	<table  class="table table-bordered table-striped table-hover">
+			<thead >
+				<tr>
+					<th>
+						Name 
+					</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<input class="form-control" ng-model="serviceClient.name" />
+						
+					</td>
+					<td>
+						<button id="add" class="btn btn-primary" ng-click="create()"> Add </button>
+						<button id="remove" class="btn btn-primary" ng-click="update(serviceClient)"> update </button>
+					</td>
+				</tr>
+			</tbody>
+	</table>
+	<table  class="table table-bordered table-striped table-hover">
+			<thead >
+				<tr>
+					<th>
+						Name 
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="serviceClient in serviceClients">
+					<td>{{serviceClient.name}}
+					</td>
+					<td>
+						<button class="btn btn-danger" ng-click="remove(serviceClient._id)">Remove</button>
+					</td>
+					<td>
+						<button class="btn btn-warning" ng-click="select(serviceClient._id)">select</button>
+					</td>
+			
+				</tr>
+			</tbody>
+	</table>
+	</div>
+</body>
+</html>
